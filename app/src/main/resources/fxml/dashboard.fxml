@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.DashboardController">
+   <children>
+      <BorderPane prefHeight="443.0" prefWidth="602.0">
+         <top>
+            <AnchorPane fx:id="statusBar" prefHeight="102.0" prefWidth="1032.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="18.0" layoutY="34.0" prefHeight="30.0" prefWidth="314.0" text="Customer Management" textFill="#f5efef">
+                     <font>
+                        <Font name="Verdana Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane prefHeight="744.0" prefWidth="1032.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="customerResult" layoutX="163.0" layoutY="11.0" prefHeight="338.0" prefWidth="587.0">
+                     <columns>
+                        <TableColumn fx:id="name" prefWidth="118.0" text="Name" />
+                        <TableColumn fx:id="customerNum" minWidth="2.6666259765625" prefWidth="135.0" text="Customer Number" />
+                        <TableColumn fx:id="payment1" minWidth="2.6666259765625" prefWidth="102.0" text="Payment" />
+                        <TableColumn fx:id="note" prefWidth="96.0" text="Note" />
+                        <TableColumn fx:id="address" minWidth="0.0" prefWidth="137.0" text="Address" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="237.0" layoutY="362.0" prefHeight="18.0" prefWidth="38.0" text="Name" />
+                  <Label layoutX="228.0" layoutY="457.0" text="Address" />
+                  <Label layoutX="177.0" layoutY="412.0" text="Payment Method" />
+                  <TextField fx:id="customerInputName1" layoutX="301.0" layoutY="358.0" prefHeight="25.0" prefWidth="295.0" />
+                  <Label layoutX="243.0" layoutY="433.0" text="Note" />
+                  <TextField fx:id="customerInputAddress1" layoutX="301.0" layoutY="457.0" prefHeight="25.0" prefWidth="295.0" />
+                  <TextField fx:id="customerInputPayment1" layoutX="301.0" layoutY="408.0" prefHeight="25.0" prefWidth="295.0" />
+                  <TextField fx:id="customerInputNote1" layoutX="301.0" layoutY="432.0" prefHeight="25.0" prefWidth="295.0" />
+                  <Label fx:id="errorLabel1" layoutX="432.0" layoutY="349.0" text="At lest one field must be filled out!" textFill="RED" visible="false" />
+                  <ButtonBar fx:id="customerButtonBar1" layoutX="337.0" layoutY="509.0" prefHeight="40.0" prefWidth="162.0">
+                     <buttons>
+                        <Button fx:id="customerButtonOK1" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCustomerButtonoK" text="OK" />
+                        <Button fx:id="customerButtonCancel1" layoutX="135.0" layoutY="17.0" minWidth="21.0" mnemonicParsing="false" onAction="#handleCustomerButtonCancel" prefHeight="25.0" text="Cancel" />
+                        <Button fx:id="customerButtonEdit1" mnemonicParsing="false" onAction="#handleCustomerButtonEdit" text="Edit" />
+                     </buttons>
+                  </ButtonBar>
+                  <Button fx:id="createButton1" layoutX="231.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleCustomerButtonCreate" prefHeight="25.0" prefWidth="77.0" text="Create" />
+                  <TextField fx:id="customerNumberField" layoutX="301.0" layoutY="383.0" prefHeight="25.0" prefWidth="295.0" />
+                  <Label layoutX="179.0" layoutY="384.0" prefHeight="22.0" prefWidth="101.0" text="Customer Phone" />
+                  <Line endX="15.0" layoutX="126.0" layoutY="150.0" startX="-100.0" />
+                  <Button fx:id="homeButton" layoutX="31.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="25.0" prefWidth="106.0" text="Return" />
+                  <Label fx:id="errorLabael" layoutX="652.0" layoutY="493.0" prefHeight="17.0" prefWidth="217.0" text="Label" textFill="#d30e0e" visible="false" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

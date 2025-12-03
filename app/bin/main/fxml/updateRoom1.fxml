@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.UpdateRoom1Controller">
+   <top>
+      <AnchorPane prefHeight="124.0" prefWidth="902.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="11.0" layoutY="54.0" prefHeight="17.0" prefWidth="295.0" text="Update room" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="443.0" prefWidth="936.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="206.0" layoutY="109.0" prefHeight="35.0" prefWidth="476.0" text="Room selection" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="numberField" layoutX="307.0" layoutY="173.0" prefHeight="25.0" prefWidth="289.0" promptText="Enter Room number" />
+            <Button fx:id="nextBuuton" layoutX="497.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Next" />
+            <Button fx:id="returnButton" layoutX="367.0" layoutY="209.0" mnemonicParsing="false" text="Return" />
+            <Label fx:id="errorLable" alignment="CENTER" layoutX="381.0" layoutY="150.0" prefHeight="17.0" prefWidth="123.0" text="Error room not found" textFill="RED" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

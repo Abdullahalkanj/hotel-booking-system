@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.AddRoomController">
+   <top>
+      <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="7.0" layoutY="23.0" prefHeight="30.0" prefWidth="343.0" text="Welcome to add a room" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="367.0" prefWidth="632.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="sizeField" layoutX="33.0" layoutY="29.0" prefHeight="26.0" prefWidth="163.0" promptText="Enter room size" />
+            <TextField fx:id="bedsField" layoutX="33.0" layoutY="72.0" prefHeight="26.0" prefWidth="163.0" promptText="Enter number of beds" />
+            <TextField fx:id="numberField" layoutX="33.0" layoutY="115.0" prefHeight="26.0" prefWidth="163.0" promptText="Enter room number" />
+            <TextField fx:id="locationField" layoutX="33.0" layoutY="157.0" prefHeight="26.0" prefWidth="163.0" promptText="Enter room location" />
+            <TextField fx:id="additionalInfo" layoutX="33.0" layoutY="202.0" prefHeight="26.0" prefWidth="163.0" promptText="Enter additional info" />
+            <Button fx:id="addRoom" layoutX="263.0" layoutY="228.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Add" />
+            <Button fx:id="returnButton" layoutX="263.0" layoutY="272.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Return " />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

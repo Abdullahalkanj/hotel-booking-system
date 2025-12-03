@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.DashboardController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <left>
+            <AnchorPane fx:id="buttonForm" prefHeight="367.0" prefWidth="172.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Line endX="15.0" layoutX="128.0" layoutY="145.0" startX="-100.0" />
+                  <Button fx:id="searchButton" layoutX="33.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleSearchButtonClick" prefHeight="25.0" prefWidth="106.0" text="Search" />
+                  <Button fx:id="customerButton" layoutX="32.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleCustomerButtonClick" prefHeight="25.0" prefWidth="107.0" text="Customer" />
+                  <Button fx:id="homeButton" layoutX="33.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="25.0" prefWidth="106.0" text="Home" />
+               </children>
+            </AnchorPane>
+         </left>
+         <top>
+            <AnchorPane fx:id="statusBar" prefHeight="33.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="closeButton" layoutX="573.0" layoutY="5.0" mnemonicParsing="false" text="X" />
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane fx:id="buttonResult" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="homeForm" prefHeight="367.3333333333333" prefWidth="430.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="searchForm" layoutX="5.0" layoutY="5.0" prefHeight="366.6666666666667" prefWidth="400.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="searchInputForm" layoutX="-14.0" prefHeight="117.0" prefWidth="400.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label fx:id="searchinputFrom" layoutX="13.0" layoutY="49.0" text="From" />
+                              <Label fx:id="searchInputTo" layoutX="14.0" layoutY="85.0" text="To" />
+                              <DatePicker fx:id="searchInputFromdate" layoutX="97.0" layoutY="45.0" prefHeight="25.0" prefWidth="133.0" />
+                              <DatePicker fx:id="searchInputTodate" layoutX="97.0" layoutY="81.0" prefHeight="25.0" prefWidth="134.0" />
+                              <TextField fx:id="searchInputText" layoutX="97.0" layoutY="10.0" prefHeight="25.0" prefWidth="291.0" />
+                              <ComboBox fx:id="searchInputType" layoutX="14.0" layoutY="10.0" prefHeight="25.0" prefWidth="76.0" promptText="Select" />
+                              <Button fx:id="searchInputButton" layoutX="362.0" layoutY="81.0" mnemonicParsing="false" text="Search" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="searchBookingForm" layoutY="128.0" prefHeight="237.0" prefWidth="429.0">
+                           <children>
+                              <TableView fx:id="searchBookingResult" prefHeight="237.0" prefWidth="376.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                  <TableColumn prefWidth="74.6666259765625" text="Customer" />
+                                  <TableColumn prefWidth="66.66665649414062" text="Room No." />
+                                    <TableColumn prefWidth="94.0" text="Check-in" />
+                                    <TableColumn prefWidth="94.6666259765625" text="Check-out" />
+                                    <TableColumn prefWidth="96.666748046875" text="Payment Status" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="searchRoomForm" layoutX="10.0" layoutY="127.0" prefHeight="240.0" prefWidth="429.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
+                           <children>
+                              <TableView fx:id="searchRoomResult" layoutY="-1.0" prefHeight="241.0" prefWidth="429.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="Room No." />
+                                    <TableColumn prefWidth="83.33334350585938" text="Bed" />
+                                    <TableColumn prefWidth="82.0" text="Size" />
+                                    <TableColumn prefWidth="94.66668701171875" text="Location" />
+                                    <TableColumn prefWidth="94.00006103515625" text="Note" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="customerForm" prefHeight="369.3333333333333" prefWidth="404.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="-1.0" layoutY="-3.0" prefHeight="373.0" prefWidth="431.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-3.0">
+                           <children>
+                              <TableView fx:id="customerResult" layoutY="7.0" prefHeight="192.0" prefWidth="427.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                  <TableColumn fx:id="name" prefWidth="114.00001525878906" text="Name" />
+                                  <TableColumn fx:id="address" minWidth="0.0" prefWidth="98.0" text="Address" />
+                                    <TableColumn fx:id="payment" minWidth="2.6666259765625" prefWidth="107.33331298828125" text="Payment" />
+                                    <TableColumn fx:id="note" prefWidth="110.66671752929688" text="Note" />
+                                </columns>
+                              </TableView>
+                              <AnchorPane fx:id="customerInput" layoutY="184.0" prefHeight="187.0" prefWidth="432.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="21.0" text="Name" />
+                                    <Label layoutX="14.0" layoutY="45.0" text="Address" />
+                                    <Label layoutX="14.0" layoutY="68.0" text="Payment Method" />
+                                    <TextField fx:id="customerInputName" layoutX="115.0" layoutY="17.0" prefHeight="25.0" prefWidth="295.0" />
+                                    <Label layoutX="14.0" layoutY="92.0" text="Note" />
+                                    <TextField fx:id="customerInputAddress" layoutX="115.0" layoutY="41.0" prefHeight="25.0" prefWidth="295.0" />
+                                    <TextField fx:id="customerInputPayment" layoutX="115.0" layoutY="64.0" prefHeight="25.0" prefWidth="295.0" />
+                                    <TextField fx:id="customerInputNote" layoutX="115.0" layoutY="87.0" prefHeight="25.0" prefWidth="295.0" />
+                                    <Label fx:id="errorLabel" layoutX="115.0" layoutY="120.0" text="At lest one field must be filled out!" textFill="RED" visible="false" />
+                                    <ButtonBar fx:id="customerButtonBar" layoutX="144.0" layoutY="133.0" prefHeight="40.0" prefWidth="200.0">
+                                      <buttons>
+                                        <Button fx:id="customerButtonEdit" mnemonicParsing="false" text="Edit" onAction="#handleCustomerButtonEdit" /> 
+                                          <Button fx:id="customerButtonOK" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCustomerButtonoK" text="OK" />
+                                          <Button fx:id="customerButtonCancel" layoutX="135.0" layoutY="17.0" minWidth="21.0" mnemonicParsing="false" onAction="#handleCustomerButtonCancel" prefHeight="25.0" text="Cancel" />
+                                      </buttons>
+                                    </ButtonBar>
+                                    <Button fx:id="createButton" layoutX="78.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Create" onAction="#handleCustomerButtonCreate" /> 
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

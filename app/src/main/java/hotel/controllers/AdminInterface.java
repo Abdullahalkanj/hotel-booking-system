@@ -1,0 +1,480 @@
+package hotel.controllers;
+
+import hotel.rooms.Room;
+import hotel.rooms.RoomManager;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+/**
+ * AdminInterface is responsible for managing the administrative interface within the application.
+ * It provides functionalities to edit, add, and remove rooms, manage users, and perform other
+ * administrative tasks.
+ */
+
+public class AdminInterface {
+
+  @FXML
+  private ResourceBundle resources;
+
+  @FXML
+  private URL location;
+
+  @FXML
+  private Button addRoomButton;
+
+  @FXML
+  private TableColumn<Room, String> additionalInfo;
+
+  @FXML
+  private TableColumn<Room, Integer> bedCount;
+
+  @FXML
+  private AnchorPane buttonForm;
+
+  @FXML
+  private AnchorPane buttonResult;
+
+  @FXML
+  private ButtonBar customerButtonBar;
+
+  @FXML
+  private AnchorPane customerInput;
+
+  @FXML
+  private AnchorPane customerForm;
+
+  @FXML
+  private Button editRoomButton;
+
+  @FXML
+  private Button editUserButton;
+
+  @FXML
+  private Button homeButton;
+
+  @FXML
+    private TextField locationText;
+
+  @FXML
+    private TextField roomNo;
+
+  @FXML
+    private TextField sizeTextField;
+
+  @FXML
+    private TextField additionalInfoText;
+
+  @FXML
+    private TextField bedsCount;
+
+  @FXML
+  private TableColumn<Room, String> llocation;
+
+  @FXML
+  private Button removeRoomButtton;
+
+  @FXML
+  private TableColumn<Room, Integer> roomNumber;
+
+  @FXML
+  private TableView<Room> roomsTable;
+
+  @FXML
+  private TableColumn<Room, String> size;
+
+  @FXML
+  private Button addUserButton;
+
+  @FXML
+  private Button removeUserButton;
+
+  @FXML
+  private Button cancelButton;
+
+  @FXML
+  private Button okButton;
+
+  @FXML
+  private boolean isEditing = false;
+
+  Room selectedRoom;
+  RoomManager roomManager;
+
+
+  @FXML
+  void handleRemoveButton(ActionEvent event) {
+    if (roomNumber.getText().isEmpty()) {
+      showWarningAlert("Please enter room number");
+    } else {
+      try {
+        int number = Integer.parseInt(roomNo.getText());
+        boolean result = roomManager.removeRoomByNumber(number);
+        if (result) {
+          showInformationAlert("Room successfully removed!");
+        } else {
+          showErrorAlert("Error while removing room!");
+        }
+      } catch (NumberFormatException ee) {
+        showErrorAlert("Invalid room number!");
+      }
+
+      // Clear the input fields after adding the data to the database
+      roomNo.clear();
+      bedsCount.clear();
+      sizeTextField.clear();
+      locationText.clear();
+      additionalInfoText.clear();
+      roomsTable.refresh();
+
+      // Set the updated data to the table view
+      roomsTable.setItems(roomManager.getRoooms());
+
+      // Refresh the table view
+      roomsTable.refresh();
+    }
+  }
+
+  @FXML
+  void handleAddButton(ActionEvent event) {
+    try {
+      // Check if any of the fields are empty
+      if (sizeTextField.getText().isEmpty()
+            || bedsCount.getText().isEmpty() 
+            || roomNo.getText().isEmpty() 
+            || locationText.getText().isEmpty() 
+            || additionalInfoText.getText().isEmpty()) {
+        showWarningAlert("Please fill in all the fields.");
+        return; // Exit the method if any fields are empty
+      }
+      // Create a Room object with the values from the input fields
+      String size = sizeTextField.getText();
+      int bedCount = Integer.parseInt(bedsCount.getText());
+      int roomNumber = Integer.parseInt(roomNo.getText());
+
+      // Check if room with the same number already exists
+      ObservableList<Room> roomList = roomManager.getRoooms();
+      for (Room existingRoom : roomList) {
+        if (existingRoom.getRoomNumber() == roomNumber) {
+          showErrorAlert("A room with the number " + roomNumber 
+              + " already exists. Please use a different number.");
+          return; // Exit the method if room number is duplicate
+        }
+      }
+      String location = locationText.getText();
+      String addInfo = additionalInfoText.getText();
+
+      Room room = new Room(-1, size, bedCount, roomNumber, location, addInfo);
+
+      // Insert the room into the database and get the auto-generated ID
+      int generatedId = roomManager.insertRoomIntoDatabase(room);
+
+      // Check if the room was successfully inserted
+      if (generatedId != -1) {
+        // If successful, set the ID of the room object to the ID generated by the database
+        room.setRoomId(generatedId);
+
+        // Add the room to the in-memory list
+        roomManager.addRooms(room);
+        showInformationAlert("Room added successfully!");
+      } else {
+        // If the room was not successfully inserted, show an error message
+        showErrorAlert("Failed to add the room.");
+      }
+    } catch (NumberFormatException e) {
+      showErrorAlert("Failed to parse integer fields: " + e.getMessage());
+    } catch (SQLException sqle) {
+      showErrorAlert("Database error: " + sqle.getMessage());
+    } catch (Exception e) {
+      showErrorAlert("Failed to add room: " + e.getMessage());
+    }
+
+    // Clear the input fields after adding the data to the database
+    roomNo.clear();
+    bedsCount.clear();
+    sizeTextField.clear();
+    locationText.clear();
+    additionalInfoText.clear();
+    roomsTable.refresh();
+
+    // Set the updated data to the table view
+    roomsTable.setItems(roomManager.getRoooms());
+
+    // Refresh the table view
+    roomsTable.refresh();
+  }
+
+
+
+  @FXML
+  void handleEditButton(ActionEvent event) {
+    // Get the selected room from the table view
+    selectedRoom = roomsTable.getSelectionModel().getSelectedItem();
+    // Check if a room is selected
+    if (selectedRoom != null) {
+      // Enable the TextArea for editing
+      //customerInputFullInfo.setEditable(true);
+      isEditing = true;
+      // Populate the text fields with the selected room's data
+      roomNo.setText(Integer.toString(selectedRoom.getRoomNumber()));
+      bedsCount.setText(Integer.toString(selectedRoom.getBedCount()));
+      sizeTextField.setText(selectedRoom.getSize());
+      locationText.setText(selectedRoom.getLocation());
+      additionalInfoText.setText(selectedRoom.getAdditionalInfo());
+      // Disable editing for roomNo
+      roomNo.setEditable(false);
+    // Enable or disable specific buttons if needed
+    //customerButtonoK.setDisable(false);
+    //customerButtonEdit.setDisable(true);
+    } else {
+      // Handle the case where no room is selected and show an error message
+      showErrorAlert("No room selected for editing.");
+    }
+  }
+
+  @FXML
+  void handleHomeButtonClick(ActionEvent event) {
+    try {
+      // Load the previous scene
+      Parent root = FXMLLoader.load(getClass().getResource("/fxml/MemberLogin.fxml"));
+
+      // Create a new scene
+      Scene scene = new Scene(root);
+
+      // Get the current stage
+      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      // Set the new scene to the current stage
+      currentStage.setScene(scene);
+
+      // Show the current stage
+      currentStage.show();
+
+    } catch (IOException e) {
+      showErrorAlert("Error loading the previous scene: " + e.getMessage());
+    }
+  }
+
+  @FXML
+  void handleAddUserButton(ActionEvent event) {
+    try {
+      // Load the previous scene
+      Parent root = FXMLLoader.load(getClass().getResource("/fxml/AddUser.fxml"));
+
+      // Create a new scene
+      Scene scene = new Scene(root);
+
+      // Get the current stage
+      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      // Set the new scene to the current stage
+      currentStage.setScene(scene);
+
+      // Show the current stage
+      currentStage.show();
+
+    } catch (IOException e) {
+      showErrorAlert("Error loading the Add User scene: " + e.getMessage());
+    }
+  }
+
+
+  @FXML
+  void handleRemoveUserButton(ActionEvent event) {
+    try {
+      // Load the previous scene
+      Parent root = FXMLLoader.load(getClass().getResource("/fxml/RemoveUser.fxml"));
+
+      // Create a new scene
+      Scene scene = new Scene(root);
+
+      // Get the current stage
+      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      // Set the new scene to the current stage
+      currentStage.setScene(scene);
+
+      // Show the current stage
+      currentStage.show();
+
+    } catch (IOException e) {
+      showErrorAlert("Error loading the Remove User scene: " + e.getMessage());
+    }
+  }
+
+  @FXML
+  private void handleButtonCancel(ActionEvent event) {
+    try {
+      // Clear the input fields when "Cancel" button is clicked
+      roomNo.clear();
+      bedsCount.clear();
+      sizeTextField.clear();
+      locationText.clear();
+      additionalInfoText.clear();
+      roomsTable.refresh();
+    } catch (Exception e) {
+      showErrorAlert("Error while canceling: " + e.getMessage());
+    }
+  }
+
+  @FXML
+private void handleButtonoK(ActionEvent event) {
+    try {
+      if (isEditing && selectedRoom != null) {
+        // Get the updated values from the text fields
+        String newNumber = roomNo.getText();
+        String newBedCount = bedsCount.getText();
+        String newSize = sizeTextField.getText();
+        String newLocation = locationText.getText();
+        String newAddInfo = additionalInfoText.getText();
+        int roomId = selectedRoom.getRoomId();
+        // Validate that none of the fields are empty
+        if (newNumber.trim().isEmpty() 
+            || newBedCount.trim().isEmpty() 
+            || newSize.trim().isEmpty() 
+            || newLocation.trim().isEmpty() 
+            || newAddInfo.trim().isEmpty()) {
+          showErrorAlert("All fields must be filled out before editing.");
+          return; // Stop processing further if validation fails
+        }
+
+        // Create an instance of the ObservableList
+        ObservableList<Room> roomList = roomManager.getRoooms();
+        // Call the editCustomerData method to update the customer in the database  
+        roomManager.updateRoomInDatabase(
+                    roomId,
+                    newSize,
+                    newBedCount,
+                    newNumber,
+                    newLocation,
+                    newAddInfo
+        );
+        // Update the ObservableList with the updated room data
+        for (Room room : roomList) {
+          if (room.getRoomId() == roomId) {
+            room.setSize(newSize);
+            room.setBedCount(Integer.parseInt(newBedCount));
+            room.setRoomNumber(Integer.parseInt(newNumber));
+            room.setLocation(newLocation);
+            room.setAdditionalInfo(newAddInfo);
+            break;
+          }
+        }
+        // Set the updated data to the table view
+        roomsTable.setItems(roomList);
+        roomNo.setEditable(true);
+        // Refresh the table view
+        roomsTable.refresh();
+        showInformationAlert("Room updated successfully!");
+      } else {
+        showWarningAlert("No room selected for editing.");
+      }
+    } catch (NumberFormatException e) {
+      showErrorAlert("Failed to parse integer fields: " + e.getMessage());
+    } catch (Exception e) {
+      showErrorAlert("Error updating room: " + e.getMessage());
+    }
+  }
+
+  @FXML
+  void initialize() {
+    assert addRoomButton != null : "fx:id=\"addRoomButton\" was not injected:"
+                                  + "check your FXML file 'AdminInterface.fxml'.";
+    assert additionalInfo != null : "fx:id=\"additionalInfo\" was not injected:"
+                                  + "check your FXML file 'AdminInterface.fxml'.";
+    assert bedCount != null : "fx:id=\"bedCount\" was not injected:"
+                             + " check your FXML file 'AdminInterface.fxml'.";
+    assert buttonForm != null : "fx:id=\"buttonForm\" was not injected:"
+                               + " check your FXML file 'AdminInterface.fxml'.";
+    assert buttonResult != null : "fx:id=\"buttonResult\" was not injected:"
+                              + " check your FXML file 'AdminInterface.fxml'.";
+    assert customerButtonBar != null : "fx:id=\"customerButtonBar\" was not injected:"
+                                      + "check your FXML file 'AdminInterface.fxml'.";
+    assert customerInput != null : "fx:id=\"customerInput\" was not injected:"
+                                  + " check your FXML file 'AdminInterface.fxml'.";
+    assert customerForm != null : "fx:id=\"customerForm\" was not injected:"
+                                  + "check your FXML file 'AdminInterface.fxml'.";
+    assert editRoomButton != null : "fx:id=\"editRoomButton\" was not injected:"
+                                  + "check your FXML file 'AdminInterface.fxml'.";
+    assert editUserButton != null : "fx:id=\"editUserButton\" was not injected:"
+                                  + "check your FXML file 'AdminInterface.fxml'.";
+    assert homeButton != null : "fx:id=\"homeButton\" was not injected:"
+                              + " check your FXML file 'AdminInterface.fxml'.";
+    assert location != null : "fx:id=\"location\" was not injected:"
+                            + " check your FXML file 'AdminInterface.fxml'.";
+    assert removeRoomButtton != null : "fx:id=\"removeRoomButtton\" was not injected:"
+                                      + " check your FXML file 'AdminInterface.fxml'.";
+    assert roomNumber != null : "fx:id=\"roomNumber\" was not injected:"
+                              + "check your FXML file 'AdminInterface.fxml'.";
+    assert roomsTable != null : "fx:id=\"roomsTable\" was not injected:"
+                              + " check your FXML file 'AdminInterface.fxml'.";
+    assert size != null : "fx:id=\"size\" was not injected:"
+                        + "check your FXML file 'AdminInterface.fxml'.";
+    assert sizeTextField != null : "fx:id=\"sizeTextField\" was not injected:"
+                                  + " check your FXML file 'AdminInterface.fxml'.";
+    this.roomManager = new RoomManager();
+
+    roomNumber.setCellValueFactory(cellData ->
+                        new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
+    bedCount.setCellValueFactory(cellData ->
+                        new SimpleIntegerProperty(cellData.getValue().getBedCount()).asObject());
+    size.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getSize()));
+    llocation.setCellValueFactory(cellData -> 
+                        new SimpleStringProperty(cellData.getValue().getLocation()));
+    additionalInfo.setCellValueFactory(cellData -> 
+                        new SimpleStringProperty(cellData.getValue().getAdditionalInfo()));
+
+    ObservableList<Room> rooms = roomManager.getRoooms();
+    roomsTable.setItems(rooms);
+
+    addUserButton.setOnAction(this::handleAddUserButton);
+    removeUserButton.setOnAction(this::handleRemoveUserButton);
+
+  }
+
+  private void showInformationAlert(String message) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Information");
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
+  }
+
+  // Method to show an error alert
+  private void showErrorAlert(String message) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Error");
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
+  }
+
+  // Method to show a warning alert
+  private void showWarningAlert(String message) {
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setTitle("Warning");
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
+  }
+
+}

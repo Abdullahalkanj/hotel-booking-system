@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="bookingForm" prefHeight="597.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.BookingController">
+    <children>
+        
+        <TableView fx:id="bookingsTable" layoutX="137.0" layoutY="103.0" prefHeight="314.0" prefWidth="739.0">
+            <columns>
+                <TableColumn fx:id="bookingDate" prefWidth="100.0" text="Booking Date" />
+                <TableColumn fx:id="customerPhone" prefWidth="124.66668701171875" text="Customer Phone" />
+                <TableColumn fx:id="roomId" minWidth="0.0" prefWidth="0.0" text="Room ID" />
+                <TableColumn fx:id="customerName" prefWidth="124.6666259765625" text="Customer Name" />
+                <TableColumn fx:id="roomNum" prefWidth="95.33331298828125" text="Room Number" />
+                <TableColumn fx:id="checkInDate" prefWidth="93.33331298828125" text="Check In Date" />
+                <TableColumn fx:id="checkOutDate" prefWidth="100.66668701171875" text="Check Out Date" />
+                <TableColumn fx:id="paymentStatus" prefWidth="98.0" text="Payment Status" />
+            </columns>
+        </TableView>
+
+        <Button fx:id="addBookingButton" layoutX="464.0" layoutY="437.0" onAction="#handleAddBookingButton" text="Add Booking" />
+        <Button fx:id="removeBookingButton" layoutX="455.0" layoutY="536.0" onAction="#handleRemoveButton" text="Remove Booking" />
+        
+        <Label layoutX="626.0" layoutY="429.0" text="Check-In Date:" />
+        <DatePicker fx:id="checkInDatePicker" layoutX="717.0" layoutY="425.0" prefWidth="150.0" />
+
+        <Label layoutX="616.0" layoutY="461.0" text="Check-Out Date:" />
+        <DatePicker fx:id="checkOutDatePicker" layoutX="717.0" layoutY="457.0" prefWidth="150.0" />
+
+        <Label layoutX="625.0" layoutY="555.0" text="Room Number:" />
+        <TextField fx:id="roomNumberField" layoutX="719.0" layoutY="551.0" prefWidth="150.0" />
+
+        <Label layoutX="616.0" layoutY="527.0" text="Customer Phone:" />
+        <TextField fx:id="customerPhoneField" layoutX="719.0" layoutY="524.0" prefWidth="150.0" />
+        <Button fx:id="returnButton" layoutX="14.0" layoutY="245.0" onAction="#handelReturnButton" text="Return" />
+      <Button fx:id="editBookingButton1" layoutX="466.0" layoutY="472.0" onAction="#handleEditBookingButton" text="Edit Booking" />
+      <Button fx:id="searchButten" layoutX="134.0" layoutY="505.0" onAction="#handleSearchButton" text="Search" visible="false" />
+      <AnchorPane layoutY="1.0" prefHeight="85.0" prefWidth="899.0" style="-fx-background-color: purple;">
+         <children>
+              <Label layoutX="22.0" layoutY="25.0" style="-fx-font-size: 24;" text="Booking Management" textFill="#f8f4f4">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="searchBarField" layoutX="135.0" layoutY="437.0" prefWidth="150.0" />
+      <Label layoutX="135.0" layoutY="420.0" text="search Input Text Field:" />
+      <Line endX="-22.666656494140625" endY="-85.00003051757812" layoutX="610.0" layoutY="518.0" startX="-22.66668701171875" startY="53.3333740234375" />
+      <TextField fx:id="paymentStatusField" layoutX="719.0" layoutY="498.0" prefWidth="150.0" promptText="Enter True or False" />
+      <Label layoutX="621.0" layoutY="502.0" text="Payment Status:" />
+      <Button fx:id="bookingsForRoom" layoutX="134.0" layoutY="558.0" onAction="#handleBookingsRoomButton" text="Bookings for a room" visible="false" />
+      <Button fx:id="bookingsForDay" layoutX="134.0" layoutY="531.0" onAction="#handleBookingsDayButton" text="Bookings for a day" visible="false" />
+      <Button fx:id="viewButton" layoutX="12.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleViewButtonClicked" prefHeight="25.0" prefWidth="115.0" text="Available Rooms" />
+      <AnchorPane fx:id="roomPane" layoutX="138.0" layoutY="101.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="739.0" visible="false"> 
+         <children>
+            <TableView fx:id="roomTable" layoutX="130.0" prefHeight="314.0" prefWidth="614.0" visible="false">
+              <columns>
+                <TableColumn fx:id="roomNoColumn" prefWidth="115.0" text="RoomNumber" />
+                <TableColumn fx:id="bedCountColumn" prefWidth="103.0" text="BedCount" />
+                  <TableColumn fx:id="sizeColumn" prefWidth="123.0" text="Size" />
+                  <TableColumn fx:id="locationColumn" prefWidth="117.0" text="Location" />
+                  <TableColumn fx:id="addInfocolumn" prefWidth="157.0" text="AdditionalInfo" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <MenuButton layoutX="135.0" layoutY="478.0" mnemonicParsing="false" text="Search Menu">
+        <items>
+          <MenuItem fx:id="searchByDate" mnemonicParsing="false" onAction="#handleByDateOption" text="By Date Range" />
+          <MenuItem fx:id="searchByNum" mnemonicParsing="false" onAction="#handleByNumOption" text="Phone Number" />
+            <MenuItem fx:id="searchByNumDate" mnemonicParsing="false" onAction="#handleByNumDateOption" text="Phone Number and date range" />
+            <MenuItem fx:id="searchByDay" mnemonicParsing="false" onAction="#handleByDay" text="Bookings for a day" />
+            <MenuItem fx:id="searchByRoom" mnemonicParsing="false" onAction="#handleByRoom" text="Bookings for a room" />
+        </items>
+      </MenuButton>
+      <Line endX="-81.0" endY="-72.0" layoutX="91.0" layoutY="297.0" startX="23.99999237060547" startY="-72.0" />
+      <Button fx:id="bookings" layoutX="13.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleBookingButtonClicked" prefHeight="25.0" prefWidth="115.0" text="Back to bookings" />
+      <Button fx:id="update" layoutX="464.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleUpdateButtonClicked" prefHeight="25.0" prefWidth="85.0" text="Update" />
+    </children>
+</AnchorPane>

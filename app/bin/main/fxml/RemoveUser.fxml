@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.RemoveUserController">
+   <top>
+      <AnchorPane prefHeight="78.0" prefWidth="155.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="label1" layoutX="14.0" layoutY="38.0" prefHeight="18.0" prefWidth="284.0" text="Remove a user" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="225.0" prefWidth="390.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="label" layoutX="58.0" layoutY="14.0" prefHeight="18.0" prefWidth="248.0" text="Add the user's info you want to remove:" />
+            <TextField fx:id="textField" alignment="CENTER" layoutX="67.0" layoutY="60.0" prefHeight="26.0" prefWidth="227.0" promptText="Enter username" />
+            <Button fx:id="removeButtton" layoutX="121.0" layoutY="177.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Remove user" />
+              <Button fx:id="returnButton" layoutX="249.0" layoutY="177.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Return" />
+            <Label fx:id="errorField" layoutX="97.0" layoutY="41.0" prefHeight="18.0" prefWidth="191.0" text="The username or ID is invalid" textFill="RED" />
+            <TextField fx:id="typeField" alignment="CENTER" layoutX="68.0" layoutY="138.0" prefHeight="26.0" prefWidth="227.0" promptText="Enter type: reception or admin" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

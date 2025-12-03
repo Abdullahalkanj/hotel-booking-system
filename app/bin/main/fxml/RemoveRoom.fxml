@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.RemoveRoomController">
+   <top>
+      <AnchorPane prefHeight="87.0" prefWidth="750.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="28.0" prefHeight="30.0" prefWidth="419.0" text="Welcome to remove a room" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="422.0" prefWidth="764.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="roomNumber" layoutX="251.0" layoutY="111.0" prefHeight="26.0" prefWidth="247.0" promptText="Enter room number" />
+            <Button fx:id="removeButton" layoutX="349.0" layoutY="162.0" mnemonicParsing="false" text="Remove" />
+            <Button fx:id="returnButton" layoutX="349.0" layoutY="200.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Return" />
+            <Label fx:id="errorLabel" layoutX="269.0" layoutY="79.0" prefHeight="18.0" prefWidth="210.0" text="An error occured!" textAlignment="CENTER" textFill="#ff0808" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

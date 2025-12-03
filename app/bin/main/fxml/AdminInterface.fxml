@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.AdminInterface">
+   <children>
+      <BorderPane prefHeight="530.0" prefWidth="749.0">
+         <left>
+            <AnchorPane fx:id="buttonForm" prefHeight="668.0" prefWidth="167.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Line endX="15.0" layoutX="128.0" layoutY="145.0" startX="-100.0" />
+                  <Button fx:id="homeButton" layoutX="33.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="25.0" prefWidth="106.0" text="Return " />
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane fx:id="buttonResult" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="customerForm" prefHeight="668.0" prefWidth="635.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="-1.0" layoutY="63.0" prefHeight="582.0" prefWidth="632.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="63.0">
+                           <children>
+                              <TableView fx:id="roomsTable" layoutX="11.0" layoutY="5.0" prefHeight="337.0" prefWidth="579.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="5.0">
+                                <columns>
+                                  <TableColumn fx:id="roomNumber" prefWidth="117.5999755859375" text="RoomNumber" />
+                                  <TableColumn fx:id="bedCount" minWidth="0.0" prefWidth="117.5999755859375" text="BedCount" />
+                                    <TableColumn fx:id="size" minWidth="2.6666259765625" prefWidth="117.5999755859375" text="Size" />
+                                    <TableColumn fx:id="llocation" prefWidth="117.5999755859375" text="Location" />
+                                    <TableColumn fx:id="additionalInfo" prefWidth="117.5999755859375" text="AdditionalInfo" />
+                                </columns>
+                              </TableView>
+                              <AnchorPane fx:id="customerInput" layoutY="358.0" prefHeight="242.0" prefWidth="631.0">
+                                 <children>
+                                    <ButtonBar fx:id="customerButtonBar" layoutX="144.0" layoutY="133.0" prefHeight="40.0" prefWidth="200.0" />
+                                  <Button fx:id="editRoomButton" layoutX="84.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="26.0" prefWidth="80.0" text="Edit" />
+                                    <Button fx:id="addRoomButton" layoutX="181.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="26.0" prefWidth="78.0" text="Add Room" />
+                                    <Button fx:id="removeRoomButtton" layoutX="276.0" layoutY="194.0" minWidth="21.0" mnemonicParsing="false" onAction="#handleRemoveButton" prefHeight="26.0" prefWidth="78.0" text="Remove" />
+                                    <TextField fx:id="roomNo" layoutX="231.0" prefHeight="26.0" prefWidth="371.0" />
+                                    <TextField fx:id="bedsCount" layoutX="231.0" layoutY="31.0" prefHeight="26.0" prefWidth="371.0" />
+                                    <TextField fx:id="sizeTextField" layoutX="230.0" layoutY="63.0" prefHeight="26.0" prefWidth="371.0" />
+                                    <TextField fx:id="locationText" layoutX="229.0" layoutY="97.0" prefHeight="26.0" prefWidth="371.0" />
+                                    <TextField fx:id="additionalInfoText" layoutX="231.0" layoutY="131.0" prefHeight="26.0" prefWidth="371.0" />
+                                    <Label layoutX="59.0" prefHeight="27.0" prefWidth="139.0" text="Edit Room NO.">
+                                       <font>
+                                          <Font name="Times New Roman" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="60.0" layoutY="30.0" prefHeight="27.0" prefWidth="139.0" text="Edit Bed Count">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="60.0" layoutY="62.0" prefHeight="27.0" prefWidth="139.0" text="Edit Size">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="60.0" layoutY="96.0" prefHeight="27.0" prefWidth="128.0" text="Edit Location">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="60.0" layoutY="130.0" prefHeight="27.0" prefWidth="168.0" text="Edit Additional Info ">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="errorLabel" layoutX="59.0" layoutY="165.0" prefHeight="27.0" prefWidth="500.0" text="you have to fill all fields" textFill="RED" visible = "false">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="-167.0" layoutY="-1.0" prefHeight="66.0" prefWidth="802.0" style="-fx-background-color: purple;">
+                           <children>
+                              <Label layoutX="15.0" layoutY="25.0" prefHeight="18.0" prefWidth="455.0" text="Welcome back, Admin!" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

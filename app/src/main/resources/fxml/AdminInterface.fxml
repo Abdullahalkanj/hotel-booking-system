@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controllers.AdminInterface">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="706.0" style="-fx-background-color: purple;" StackPane.alignment="TOP_RIGHT">
+         <children>
+            <Label layoutX="17.0" layoutY="2.0" prefHeight="78.0" prefWidth="500.0" text="Welcome Back, Admin!" textFill="#f2efef">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="702.0" StackPane.alignment="BOTTOM_CENTER">
+         <children>
+            <TableView fx:id="roomsTable" layoutX="135.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="526.0">
+               <columns>
+                  <TableColumn fx:id="roomNumber" prefWidth="89.60003662109375" text="RoomNumber" />
+                  <TableColumn fx:id="bedCount" minWidth="0.0" prefWidth="66.4000244140625" text="BedCount" />
+                  <TableColumn fx:id="size" minWidth="2.6666259765625" prefWidth="59.99993896484375" text="Size" />
+                  <TableColumn fx:id="llocation" prefWidth="112.0" text="Location" />
+                  <TableColumn fx:id="additionalInfo" prefWidth="263.199951171875" text="AdditionalInfo" />
+               </columns>
+            </TableView>
+            <Line endX="15.0" layoutX="109.0" layoutY="90.0" startX="-100.0" />
+            <Button fx:id="addUserButton" layoutX="13.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Add User" />
+            <Button fx:id="removeUserButton" layoutX="13.0" layoutY="136.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Remove User" />
+            <Button fx:id="homeButton" layoutX="13.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="25.0" prefWidth="106.0" text="Return " />
+            <Label layoutX="259.0" layoutY="326.0" prefHeight="27.0" prefWidth="139.0" text="Room NO.">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="259.0" layoutY="351.0" prefHeight="27.0" prefWidth="139.0" text="Bed Count">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="259.0" layoutY="378.0" prefHeight="27.0" prefWidth="139.0" text="Size">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="259.0" layoutY="404.0" prefHeight="27.0" prefWidth="128.0" text="Location">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="259.0" layoutY="431.0" prefHeight="27.0" prefWidth="168.0" text="Additional Info ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="roomNo" layoutX="433.0" layoutY="326.0" prefHeight="26.0" prefWidth="227.0" />
+            <TextField fx:id="bedsCount" layoutX="433.0" layoutY="352.0" prefHeight="26.0" prefWidth="227.0" />
+            <TextField fx:id="sizeTextField" layoutX="433.0" layoutY="379.0" prefHeight="26.0" prefWidth="227.0" />
+            <TextField fx:id="locationText" layoutX="433.0" layoutY="404.0" prefHeight="26.0" prefWidth="227.0" />
+            <TextField fx:id="additionalInfoText" layoutX="433.0" layoutY="431.0" prefHeight="26.0" prefWidth="227.0" />
+            <Button fx:id="editRoomButton" layoutX="14.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="26.0" prefWidth="80.0" text="Edit" />
+            <Button fx:id="removeRoomButtton" layoutX="118.0" layoutY="392.0" minWidth="21.0" mnemonicParsing="false" onAction="#handleRemoveButton" prefHeight="26.0" prefWidth="78.0" text="Remove" />
+            <Button fx:id="okButton" layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleButtonoK" prefHeight="26.0" prefWidth="78.0" text="OK" />
+            <Button fx:id="cancelButton" layoutX="15.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleButtonCancel" prefHeight="26.0" prefWidth="78.0" text="Cancel" />
+            <Button fx:id="addRoomButton" layoutX="118.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="26.0" prefWidth="78.0" text="Add Room" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
