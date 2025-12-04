@@ -1,11 +1,6 @@
-Here is a **clean, complete, professional README.md** for your **Hotel Booking System (JavaFX + MySQL)** project.
-It includes everything a proper README should have: overview, features, tech stack, user stories, installation, database setup, screenshots section, and team members.
 
-You can paste it directly into GitLab/GitHub.
 
----
-
-````markdown
+````
 # 🏨 Hotel Booking System – JavaFX & MySQL
 
 A desktop application for managing hotel operations, built with **JavaFX**, **MySQL**, and **Gradle**.  
